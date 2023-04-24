@@ -136,6 +136,23 @@
           "color_scheme": "background-1"
         }
       }
+    },
+    "content_for_index": [
+
+    ],
+    "blocks": {
+      "17564293679270429316": {
+        "type": "shopify:\/\/apps\/xo-sections\/blocks\/xo-sections-scripts\/e05b40dd-1687-4f0f-80f4-ab2769a4b17b",
+        "disabled": false,
+        "settings": {
+        }
+      },
+      "16489308096923080669": {
+        "type": "shopify:\/\/apps\/xo-sections\/blocks\/xo-sections-styles\/e05b40dd-1687-4f0f-80f4-ab2769a4b17b",
+        "disabled": false,
+        "settings": {
+        }
+      }
     }
   },
   "presets": {
