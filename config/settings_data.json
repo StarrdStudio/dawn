@@ -164,6 +164,12 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "6588702529468458379": {
+        "type": "shopify:\/\/apps\/ecomposer-builder\/blocks\/app-embed\/a0fc26e1-7741-4773-8b27-39389b4fb4a0",
+        "disabled": false,
+        "settings": {
+        }
       }
     }
   },
