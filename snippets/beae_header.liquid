@@ -272,7 +272,7 @@
             "string" == typeof t && (t = t.replace(".", ""));
             var i = ""
             , r = /\{\{\s*(\w+)\s*\}\}/
-            , a = e || ({{ settings.currency_code_enabled }} ? this.money_with_currency_format : this.money_format);
+            , a = e || ({{ settings.currency_code_enabled | default: false }} ? this.money_with_currency_format : this.money_format);
             switch (a.match(r)[1]) {
             case "amount":
                 i = o(t, 2);
