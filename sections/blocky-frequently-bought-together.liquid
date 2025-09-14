@@ -1,0 +1,707 @@
+{%- comment -%}
+  © BlockyApps. You are permitted to use this content within your store. Redistribution or use in any other application is strictly prohibited. 
+  Unauthorized copying, distribution, or reproduction in any form will result in legal action.
+{% endcomment %}
+
+{%- stylesheet -%}
+.blocky-fbt {
+  display: block;
+  --checkbox-size: 1.5rem;
+  --checkbox-margin: 0.8rem;
+}
+.blocky-fbt-media {
+  display: grid;
+  column-gap: 2rem;
+  margin-bottom: 1rem;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(var(--media-size), 1fr)
+}
+.blocky-fbt-media-item {
+  cursor: pointer;
+  max-width: 20rem;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.blocky-fbt-media-item:not(:first-child)::before {
+  content: "+";
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: -1rem;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.blocky-fbt-media-item img,
+.blocky-fbt-media-item svg {
+  width: 100%;
+  border-radius: var(--border-radius);
+  vertical-align: bottom;
+}
+.blocky-fbt-media-item-disabled img {
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+.blocky-fbt-form {
+  margin-bottom: 0.75rem;
+}
+.blocky-fbt-product {
+  margin-bottom: 1.25rem;
+}
+.blocky-fbt-checkbox-container {
+  display: flex;
+  align-items: center;
+}
+.blocky-fbt-checkbox:checked + .blocky-fbt-checkbox-label .checkmark-unchecked,
+.blocky-fbt-checkbox:not(:checked) + .blocky-fbt-checkbox-label .checkmark-checked {
+  display: none;
+}
+.blocky-fbt-checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
+}
+.blocky-fbt-checkbox-label svg {
+  min-width: var(--checkbox-size);
+  min-height: var(--checkbox-size);
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  margin-right: var(--checkbox-margin);
+  color: var(--checkbox-color);
+}
+.blocky-fbt-title {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--prod-name-color);
+  line-height: 1.2;
+}
+.blocky-fbt-checkbox:not(:checked) + .blocky-fbt-checkbox-label .blocky-fbt-title {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.blocky-fbt-prices {
+  flex-shrink: 0;
+  line-height: 1;
+  font-size: 1.6rem;
+  padding-left: 1rem;
+}
+.blocky-fbt-variant-selects {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0 calc(var(--checkbox-size) + var(--checkbox-margin));
+}
+.blocky-fbt-product-deselected .blocky-fbt-variant-selects {
+  opacity: 0.5;
+}
+.blocky-fbt-total-price-container {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--price-color);
+  margin: 0;
+  text-align: left;
+  border-top: solid 1px rgba(var(--color-foreground), 0.1);
+  line-height: 2.5;
+}
+.blocky-fbt-center,
+.blocky-fbt-button {
+  max-width: 45rem;
+  margin: 0 auto;
+  width: 100%;
+}
+.blocky-fbt-center {
+  padding-bottom: 1rem;
+}
+.blocky-fbt-images-top .blocky-fbt-media {
+  margin-bottom: 2rem;
+}
+.blocky-fbt-total-compare-price, 
+.blocky-fbt-compare-price {
+  text-decoration: line-through;
+  letter-spacing: .1rem;
+  color: var(--compare-at-price);
+  font-size: 1.8rem;
+}
+  
+@media screen and (min-width: 750px) {
+  .blocky-fbt {
+    --checkbox-size: 2rem;
+    --checkbox-size: 2rem;
+    --checkbox-margin: 1rem;
+  }
+  .blocky-fbt-media {
+    column-gap: 3rem;
+  }
+  .blocky-fbt-media-item:not(:first-child)::before {
+    left: -1.5rem;
+    font-size: 2.5rem;
+  }
+  .blocky-fbt-title,
+  .blocky-fbt-price {
+    font-size: 2rem;
+  }
+  .blocky-fbt-total-price-container {
+    font-size: 2.3rem;
+  }
+  .blocky-fbt-images-top .blocky-fbt-media {
+    margin-bottom: 3rem;
+  }
+  .blocky-fbt-images-left,
+  .blocky-fbt-images-right {
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem;
+    align-items: center;
+  }
+  .blocky-fbt-images-left .blocky-fbt-empty,
+  .blocky-fbt-images-right .blocky-fbt-empty {
+    display: block;
+  }
+  .blocky-fbt-images-left .blocky-fbt-center,
+  .blocky-fbt-images-left .blocky-fbt-button,
+  .blocky-fbt-images-right .blocky-fbt-button,
+  .blocky-fbt-images-right .blocky-fbt-center {
+    margin: 0;
+  }
+  .blocky-fbt-images-right .blocky-fbt-center {
+    order: 1;
+    justify-self: flex-end;
+  }
+  .blocky-fbt-images-right .blocky-fbt-media {
+    order: 2;
+  }
+  .blocky-fbt-images-right .blocky-fbt-button {
+    order: 3;
+    justify-self: flex-end;
+  }
+  .blocky-fbt-images-right .blocky-fbt-empty {
+    order: 4;
+  }
+}
+@media screen and (max-width: 749px) {
+  .blocky-fbt-prices {
+    font-size: 1.5rem;
+  }
+  .blocky-fbt-total-compare-price, 
+  .blocky-fbt-compare-price {
+    font-size: 1.3rem;
+  }
+}
+.blocky-fbt-variant-select {
+  position: relative;
+  max-width: 100%;
+  line-height: 1;
+}
+.blocky-fbt-variant-select select:focus {
+  outline: 0;
+}
+.blocky-fbt-variant-select select {
+  font-size: 1.4rem;
+  max-width: 100%;
+  padding: 6px 20px 6px 10px;
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px;  
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-overflow: ellipsis;
+  white-space: pre;
+  overflow: hidden !important;
+  background: var(--dropdown-bg-color);  
+  color: var(--dropdown-text-color);
+}
+.blocky-fbt .blocky-title {
+  margin-bottom: 3.2rem;
+}
+.blocky-fbt .blocky-title:has(+ .blocky-body-text) {
+  margin-bottom: 2rem;
+}
+.blocky-fbt .blocky-body-text {
+  margin-bottom: 3rem;
+}
+.blocky-fbt-variant-select svg {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  right: 0;
+  pointer-events: none;
+  color: var(--dropdown-text-color);
+}
+.blocky-fbt-price {
+  color: var(--price-color);
+}
+.blocky-fbt .atc-button {
+  background-color: var(--atc-bg-color);
+  color: var(--atc-text-color);
+  border-radius: calc(var(--border-radius) * 2);
+  width: 100%;
+  font-size: 1.5rem;
+  letter-spacing: .1rem;
+}
+.blocky-fbt-checkbox {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+{%- endstylesheet -%}
+
+<script src="{{ 'blocky-fbt.js' | asset_url }}" defer="defer"></script>
+
+<div class="blocky blocky-padding background-wrapper" style="--padding-top: {{ section.settings.padding_top }}; --padding-bottom: {{ section.settings.padding_bottom }}; --background-color: {{ section.settings.background_color }}; --section-page-width: {{ section.settings.page_width | divided_by: 10 }}rem;">
+  <div class="blocky-page-width blocky-fbt">
+    <div class="blocky-text-container-desktop-{{ section.settings.desktop_content_alignment }} blocky-text-container-mobile-{{ section.settings.mobile_content_alignment }}">
+      {% render 'blocky-titlel', block: section %}
+      {% render 'blocky-bodyl', block: section %}
+    </div>
+
+    <blocky-fbt
+      class="blocky-fbt blocky-fbt-{{ section.settings.layout }}"
+      data-currency-symbol="{{ cart.currency.symbol }}"
+      data-money-format="{{ shop.money_format | json }}"
+      style="--checkbox-color: {{ section.settings.checkbox_color }}; --prod-name-color: {{ section.settings.product_name_color }}; --price-color: {{ section.settings.price_color }}; --compare-at-price: {{ section.settings.price_color }}b3; --dropdown-bg-color: {{ section.settings.dropdown_bg_color }}; --dropdown-text-color: {{ section.settings.dropdown_text_color }}; --atc-bg-color: {{ section.settings.atc_bg_color }}; --atc-text-color: {{ section.settings.atc_text_color }}; --border-radius: {{ section.settings.border_radius }}px;"
+    >
+      <div class="blocky-fbt-media" style="--media-size: {{ section.blocks.size }}">
+        {% for block in section.blocks %}
+          {% assign product = block.settings.product %}
+          <div class="blocky-fbt-media-item" {{ block.shopify_attributes }}>
+            {% if product != blank and product.featured_image != blank %}
+              <a href="{{ product.url }}" class="blocky-fbt-media-item-container">
+                <img
+                  src="{{ product.featured_image | image_url: width: 800 }}"
+                  alt="{{ product.featured_image.alt | escape }}"
+                  loading="lazy"
+                  width="auto"
+                  height="auto"
+                  class="blocky-fbt-media-item-img"
+                >
+              </a>
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg blocky-media-placeholder' }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="blocky-fbt-center">
+        {% liquid 
+          assign total_compare_price = 0
+          assign total_price = 0
+          assign total_products = 0
+        %}
+        {% for block in section.blocks %}
+          {% assign product = block.settings.product %}
+
+          {% if product != blank %}
+            {% liquid
+              assign price = product.selected_or_first_available_variant.price
+              if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price
+                assign compare_price = product.selected_or_first_available_variant.compare_at_price
+              else 
+                assign compare_price = product.selected_or_first_available_variant.price
+              endif
+              assign total_price = total_price | plus: price
+              assign total_compare_price = total_compare_price | plus: compare_price
+              assign total_products = total_products | plus: 1
+            %}
+
+            <div class="blocky-fbt-product">
+              <div class="blocky-fbt-checkbox-container">
+                <input
+                  type="checkbox"
+                  class="blocky-fbt-checkbox"
+                  id="checkbox-{{ section.id }}-{{ forloop.index0 }}"
+                  data-id="{{ product.selected_or_first_available_variant.id }}"
+                  data-price="{{ price }}"
+                  data-compare-price="{{ compare_price }} "
+                  data-index="{{ forloop.index0 }}"
+                  data-id-index="id_{{ forloop.index0 }}"
+                  data-checked="true"
+                  checked
+                >
+                <label for="checkbox-{{ section.id }}-{{ forloop.index0 }}" class="blocky-fbt-checkbox-label h4">
+                  <svg class="checkmark-checked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" width="50" height="50">
+                    <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                  </svg>
+                  <svg class="checkmark-unchecked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" width="50" height="50" >
+                    <path d="M384 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H384zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>
+                  </svg>
+                  <p class="blocky-fbt-title">
+                    {{ product.title }}
+                  </p>
+                </label>
+                <div class="blocky-fbt-prices">
+                  <span class="blocky-fbt-price">{{ price | money }}</span>
+                  <span class="blocky-fbt-compare-price">{% if compare_price > price %}{{ compare_price | money }}{% endif %}</span>
+                </div>
+              </div>
+              <div class="blocky-fbt-info">
+                {% if product.has_only_default_variant == false %}
+                  <div class="blocky-fbt-variant-selects" data-index="{{ forloop.index0 }}" data-id-index="id_{{ forloop.index0 }}">
+                    {%- for option in product.options_with_values -%}
+                      <div class="blocky-fbt-variant-select">
+                        <select>
+                          {% for value in option.values %}
+                            <option value="{{ value }}" {% if option.selected_value == value %} selected="selected" {% endif %}>
+                              {{- value -}}
+                            </option>
+                          {% endfor %}
+                        </select>
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                        </svg>
+                      </div>
+                    {%- endfor -%}
+                    <script type="application/json">
+                      {{ product.variants | json }}
+                    </script>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="blocky-fbt-empty"></div>
+      <div class="blocky-fbt-button">
+        <p class="blocky-fbt-total-price-container">
+          <span>{{ section.settings.total_price_label }}</span>
+          <span>
+            <span class="blocky-fbt-total-price">{{ total_price | money }}</span>
+            <span class="blocky-fbt-total-compare-price">{%- if total_compare_price > total_price %}{{ total_compare_price | money }}{% endif -%}</span>
+          </span>
+        </p>
+        {% if total_products == section.blocks.size %}
+          <product-form class="product-form" data-section="{{ section.id }}">
+            <div class="product-form__error-message-wrapper" role="alert" hidden>
+              <svg aria-hidden="true" focusable="false" class="icon icon-error" viewBox="0 0 13 13">
+                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+              </svg>
+              <span class="product-form__error-message"></span>
+            </div>
+            {%- form 'product',
+              product,
+              class: 'form',
+              novalidate: 'novalidate',
+              data-type: 'add-to-cart-form'
+            -%}
+              <div class="product-form__variants"></div>
+              {% if section.settings.skip_cart %} <input type="hidden" name="return_to" value="/checkout">{% endif %}             
+              <div class="product-form__buttons">
+                <button type="submit" name="add" class="atc-button product-form__submit blocky-button-regular blocky-button">
+                  <span>
+                    {{ section.settings.btn_label }}
+                  </span>
+                  <div class="loading-overlay__spinner hidden">
+                    <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg" >
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            {%- endform -%}
+          </product-form>
+        {% else %}
+          <button class="atc-button blocky-button-regular blocky-button" style="cursor: not-allowed; opacity: 0.3;">
+            Select a product for each block
+          </button>
+        {% endif %}
+      </div>
+    </blocky-fbt>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "BKY - Frequently Bought",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "<b>Frequently Bought Together</b>",
+      "label": "Title",
+      "info": "Leave the text blank to hide the title."
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "default": 40,
+      "min": 15,
+      "max": 80,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body",
+      "info": "Leave the text blank to hide the body."
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body size",
+      "default": 16,
+      "min": 10,
+      "max": 30,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Bundles"
+    },
+    {
+      "type": "paragraph",
+      "content": "Note: The ATC button does not work in the theme editor. Please try it out in preview mode."
+    },
+    {
+      "type": "checkbox",
+      "id": "skip_cart",
+      "label": "Skip cart",
+      "default": false,
+      "info": "Your customers will be sent directly to checkout after click the Add to Cart button."
+    },
+    {
+      "type": "text",
+      "id": "total_price_label",
+      "label": "Total price label",
+      "default": "Total Price:"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Add to cart button label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "default": 6,
+      "min": 0,
+      "max": 12,
+      "unit": "px"
+    },
+    
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "checkbox_color",
+      "label": "Checkbox color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "product_name_color",
+      "label": "Product name color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_bg_color",
+      "label": "Dropdown background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_text_color",
+      "label": "Dropdown text and arrow color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#000000"
+    },    
+    {
+      "type": "color",
+      "id": "atc_bg_color",
+      "label": "ATC background color",
+      "default": "#000000"
+    }, 
+    {
+      "type": "color",
+      "id": "atc_text_color",
+      "label": "ATC text color",
+      "default": "#FFFFFF"
+    },
+
+    
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "images-top",
+          "label": "Images top"
+        },
+        {
+          "value": "images-left",
+          "label": "Images first"
+        },
+        {
+          "value": "images-right",
+          "label": "ATC button first"
+        }
+      ],
+      "default": "images-left",
+      "label": "Desktop layout"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Desktop text alignment"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Mobile text alignment"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    
+    {
+      "type": "header",
+        "content": "Section size",
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "unit": "px",
+      "step": 100,
+      "min": 800,
+      "max": 1600,
+      "default": 1200,
+      "label": "Section width",
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blocky Frequently Bought Together",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
